@@ -1,3 +1,5 @@
 pydantic
 langgraph
 langchain
+langchain_groq
+langchain_community
