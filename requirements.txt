@@ -3,3 +3,6 @@ langgraph
 langchain
 langchain_groq
 langchain_community
+python-dotenv
+langchain-core
+langchain-openai
