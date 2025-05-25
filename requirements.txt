@@ -6,3 +6,9 @@ langchain_community
 python-dotenv
 langchain-core
 langchain-openai
+pypdf
+bs4
+arxiv
+pymupdf
+wikipedia
+playwright
