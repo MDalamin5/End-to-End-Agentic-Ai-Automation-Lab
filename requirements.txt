@@ -12,3 +12,4 @@ arxiv
 pymupdf
 wikipedia
 playwright
+langchain-huggingface
