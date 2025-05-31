@@ -13,3 +13,4 @@ pymupdf
 wikipedia
 playwright
 langchain-huggingface
+faiss-cpu
