@@ -14,3 +14,5 @@ wikipedia
 playwright
 langchain-huggingface
 faiss-cpu
+langchain-google-genai
+langchain-pinecone
