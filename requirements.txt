@@ -16,3 +16,5 @@ langchain-huggingface
 faiss-cpu
 langchain-google-genai
 langchain-pinecone
+cassio
+langchain-astradb>=0.6,<0.7
