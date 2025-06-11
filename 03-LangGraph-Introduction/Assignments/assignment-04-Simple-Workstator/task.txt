@@ -1,0 +1,10 @@
+Assignment-04
+
+1. Create a Supervisor Node
+2. Router function 
+    i. llm call
+    ii. RAG call
+    iii. Web-search 
+4. Create a validation of generate output.
+5. if validation is fail then go to **Rewrite the query or user question** and back to the Supervisor Node.
+6. once validation is pass then only show the output.
