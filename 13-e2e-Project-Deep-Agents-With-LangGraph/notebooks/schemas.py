@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 class AgentConfig(BaseModel):
+    """Defines the configuration for an agent, including its name, description, capabilities, and constraints."""
     name: str
     description: str
     capabilities: list[str]
