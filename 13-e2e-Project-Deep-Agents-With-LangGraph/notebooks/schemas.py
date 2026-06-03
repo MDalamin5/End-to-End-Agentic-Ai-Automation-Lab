@@ -20,3 +20,10 @@ class TaskExecutionResult(BaseModel):
     output: str | None = None
     error_message: str | None = None
 
+
+class AgentAction(BaseModel):    
+    """Defines an action taken by an agent, including the agent's name, the action description, and any relevant details."""
+    agent_name: str
+    action_description: str
+    details: dict | None = None     
+
