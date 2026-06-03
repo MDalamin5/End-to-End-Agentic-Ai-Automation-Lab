@@ -7,6 +7,8 @@ class AgentConfig(BaseModel):
     constraints: list[str]  
 
 class TaskConfig(BaseModel):
+    """Defines the configuration for a task, including its name, description, and the agents involved.
+    """
     task_name: str
     task_description: str
     agents: list[AgentConfig]
