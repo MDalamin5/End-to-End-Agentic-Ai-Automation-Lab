@@ -53,4 +53,9 @@ class AgentInteraction(BaseModel):
     interaction_description: str
     details: dict | None = None
 
-    
+class TaskExecutionLog(BaseModel):
+    """Defines a log entry for task execution, including the timestamp, task name, agent actions, and any relevant details."""
+    timestamp: str  # ISO 8601 format
+    task_name: str
+    agent_actions: list[AgentAction]
+    details: dict | None = None
