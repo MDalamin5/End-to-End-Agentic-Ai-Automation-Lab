@@ -45,3 +45,12 @@ class TaskSummary(BaseModel):
     task_name: str
     final_status: str  # e.g., "success", "failure"
     insights: str | None = None
+
+class AgentInteraction(BaseModel):
+    """Defines an interaction between agents, including the names of the agents involved, the interaction description, and any relevant details."""
+    agent_1: str
+    agent_2: str
+    interaction_description: str
+    details: dict | None = None
+
+    
