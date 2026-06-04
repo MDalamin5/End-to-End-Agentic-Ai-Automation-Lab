@@ -27,3 +27,15 @@ class AgentAction(BaseModel):
     action_description: str
     details: dict | None = None     
 
+
+class AgentState(BaseModel):
+    """Defines the state of an agent, including its name, current status, and any relevant information."""
+    agent_name: str
+    status: str  # e.g., "idle", "active", "completed"
+    info: dict | None = None
+    
+class TaskProgress(BaseModel):
+    """Defines the progress of a task, including the task name, current status, and any relevant details."""
+    task_name: str
+    status: str  # e.g., "not started", "in progress", "completed"
+    details: dict | None = None
