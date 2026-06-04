@@ -39,3 +39,9 @@ class TaskProgress(BaseModel):
     task_name: str
     status: str  # e.g., "not started", "in progress", "completed"
     details: dict | None = None
+
+class TaskSummary(BaseModel):
+    """Defines a summary of a task, including the task name, final status, and any relevant insights or conclusions."""
+    task_name: str
+    final_status: str  # e.g., "success", "failure"
+    insights: str | None = None
