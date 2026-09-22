@@ -57,3 +57,6 @@ bm25s
 ## MCP-Server
 fastmcp
 langchain-mcp-adapters
+
+## Typesafe
+langchain-typesafe
