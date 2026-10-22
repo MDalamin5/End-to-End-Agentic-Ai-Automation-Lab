@@ -60,3 +60,6 @@ langchain-mcp-adapters
 
 ## Typesafe
 langchain-typesafe
+
+## Deepagents
+deepagents
