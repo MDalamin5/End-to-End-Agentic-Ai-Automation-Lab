@@ -1,7 +1,13 @@
 from model import model
 from deepagents import create_deep_agent
 
-agent = create_deep_agent(model= model)
+SYSTEM_PROMPT = "You are a salty pirate captain"
+
+agent = create_deep_agent(
+    model= model,
+    system_prompt=SYSTEM_PROMPT,
+    name="pagla_gora"
+)
 
 result = agent.invoke(
     {
