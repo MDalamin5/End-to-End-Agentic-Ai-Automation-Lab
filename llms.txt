@@ -1,0 +1,13 @@
+# End-to-End-Agentic-Ai-Automation-Lab
+
+> A Python repository of hands-on modules for building agentic AI systems, RAG pipelines, MCP integrations, workflow automation, LLM fine-tuning, and full-stack AI products.
+
+Organized into numbered modules covering LangGraph, AutoGen, MCP, n8n, production RAG with guardrails, vLLM deployment, Unsloth/LoRA fine-tuning, and end-to-end projects like an AI Interviewer, ATS, and SynapseAI chatbot. Each module has its own dependencies to install via conda or venv, with API keys configured in a .env file copied from .env.example. Contributions follow a fork-and-pull-request workflow; the project is MIT licensed.
+
+## Docs
+
+- [End-to-End-Agentic-Ai-Automation-Lab README](https://raw.githubusercontent.com/MDalamin5/End-to-End-Agentic-Ai-Automation-Lab/main/README.md): Overview, key highlights, project architecture, tech stack, and getting started for building agentic AI systems.
+- [Overview](https://github.com/MDalamin5/End-to-End-Agentic-Ai-Automation-Lab/blob/main/README.md#-overview): Hands-on playbook for moving from basic LLM API calls to multi-agent autonomous systems and production-ready AI products.
+- [Key Highlights](https://github.com/MDalamin5/End-to-End-Agentic-Ai-Automation-Lab/blob/main/README.md#-key-highlights): LangGraph and AutoGen deep dives, MCP implementations, production RAG, n8n automation, fine-tuning, and end-to-end products.
+- [Repository Modules & Projects](https://github.com/MDalamin5/End-to-End-Agentic-Ai-Automation-Lab/blob/main/README.md#-repository-modules--projects): Progressive modules covering Pydantic validation, LangChain, LangGraph, AutoGen, MCP, and n8n projects.
+- [Getting Started](https://github.com/MDalamin5/End-to-End-Agentic-Ai-Automation-Lab/blob/main/README.md#️-getting-started): Cloning the repository, setting up a virtual environment, installing per-module dependencies, and configuring API keys.
