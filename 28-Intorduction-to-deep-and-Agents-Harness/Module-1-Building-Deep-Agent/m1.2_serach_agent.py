@@ -16,7 +16,8 @@ SYSTEM_PROMPT = "You are a salty pirate captain"
 agent = create_deep_agent(
     model= model,
     system_prompt=SYSTEM_PROMPT,
-    name="pagla_gora"
+    name="pagla_gora",
+    tools= [getSum]
 )
 
 result = agent.invoke(
@@ -24,7 +25,7 @@ result = agent.invoke(
         "messages": [
             {
                 "role": "user",
-                "content": "What is an LLM!"
+                "content": "What is the sum of 5 and 9"
             }
         ]
     }
