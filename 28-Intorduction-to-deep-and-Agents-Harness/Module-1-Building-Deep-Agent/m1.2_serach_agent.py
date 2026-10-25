@@ -1,6 +1,6 @@
 from model import model
 from deepagents import create_deep_agent
-from tools import getSum
+from tools import getSum, getPrompt
 
 SYSTEM_PROMPT = "You are a salty pirate captain"
 
@@ -10,7 +10,7 @@ agent = create_deep_agent(
     model= model,
     system_prompt=SYSTEM_PROMPT,
     name="pagla_gora",
-    tools= [getSum]
+    tools= [getSum, getPrompt]
 )
 
 result = agent.invoke(
