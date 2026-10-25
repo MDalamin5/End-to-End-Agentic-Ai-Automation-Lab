@@ -1,13 +1,6 @@
 from model import model
 from deepagents import create_deep_agent
-from langchain_core.tools import tool
-
-
-@tool
-def getSum(a: int, b: int) -> int:
-    """This function return two int number sum."""
-
-    return a + b
+from tools import getSum
 
 SYSTEM_PROMPT = "You are a salty pirate captain"
 
