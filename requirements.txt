@@ -17,7 +17,7 @@ faiss-cpu
 langchain-google-genai
 langchain-pinecone
 cassio
-langchain-astradb>=0.6,<0.7
+langchain-astradb
 pypdf
 langchain_experimental
 langchain-tavily
