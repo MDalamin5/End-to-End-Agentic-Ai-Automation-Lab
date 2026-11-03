@@ -12,6 +12,7 @@
 
 [Overview](#-overview) •
 [Key Highlights](#-key-highlights) •
+[Agent Harness](#-what-is-an-agent-harness) •
 [Project Architecture](#-repository-modules--projects) •
 [Tech Stack](#️-tech-stack--tools) •
 [Getting Started](#-getting-started)
@@ -36,6 +37,100 @@ Whether you are looking to build highly reliable Agentic workflows using **LangG
 * **AI Workflow Automation**: Zero-code/low-code multi-agent orchestration using **n8n** and **LangFlow**.
 * **LLM Fine-Tuning & Serving**: Hands-on pipelines for fine-tuning with **LoRA/Unsloth** and deploying high-throughput inference endpoints with **vLLM**.
 * **End-to-End Products**: Complete full-stack implementations of an AI Interviewer, a Production ATS, and SynapseAI (a stateful, persistent chatbot).
+
+---
+
+## 🧰 What is an Agent Harness?
+
+An LLM on its own can only take text in and send text out. The **agent harness** is everything you build *around* the model so it can work in the real world and finish multi-step tasks. A simple way to put it: **Agent = Model + Harness**.
+
+### What's in a harness
+
+| Component | Role |
+|---|---|
+| **System prompt** | Sets the agent's role, rules, and how it should behave |
+| **Tools** | Functions the model can call: search, SQL, code execution, APIs, MCP servers |
+| **Context management** | Picks what goes into the context window: summarization, context offloading, prompt caching |
+| **Memory** | Short-term (the conversation/state) and long-term (facts kept across sessions) |
+| **Filesystem / sandbox** | A place to write notes, save large results, and run code safely |
+| **Planning** | A to-do list that breaks a big task into steps |
+| **Subagents** | Specialized helper agents the main agent hands work to, each with its own clean context |
+| **Skills** | Reusable instructions and resources loaded only when they're needed |
+| **Human-in-the-loop (HITL)** | Pauses so a human can approve, edit, or reject sensitive actions |
+| **Middleware / hooks** | Code that runs before or after the model call to change inputs, outputs, or tool calls |
+
+**The job of a harness:** give the model the *right context at the right time* for the task in front of it.
+
+### Why you need one
+* Lets the agent **take actions** in an environment, not just answer questions.
+* Connects the agent to **your data** and systems.
+* Keeps a **growing context** under control over long tasks.
+* Supports **HITL** approval for risky steps.
+* Runs work **in parallel** through subagents.
+* Helps the agent **improve over time** through memory and feedback.
+
+### How the agent loop works
+
+```
+            ┌──────────────────────────────────────────┐
+ User ───►  │  Harness builds context                  │
+ task       │  (system prompt + memory + history +     │
+            │   available tools/skills)                │
+            └───────────────┬──────────────────────────┘
+                            ▼
+                  ┌───────────────────┐
+                  │   LLM (reasoning) │◄──────────────┐
+                  └─────────┬─────────┘               │
+             final answer?  │  tool call?             │
+              ┌─────────────┴─────────────┐           │
+              ▼                           ▼           │
+        Return to user        Harness runs the tool  │
+                              (middleware, HITL      │
+                               checks, sandbox)      │
+                                          │          │
+                                          └─ result ─┘
+                                     added back to context
+```
+
+1. **Input** – The user sends a task. The harness builds the prompt from the system prompt, memory, conversation history, and the tool definitions.
+2. **Reason** – The model decides what to do: answer right away, call a tool, write a plan, or hand work to a subagent.
+3. **Act** – The harness runs the tool call. Middleware can check or change it first, and HITL can pause for approval.
+4. **Observe** – The tool result goes back into the context. Large outputs can be saved to the filesystem so the context stays small.
+5. **Repeat** – The loop keeps going until the model gives a final answer or hits a stop condition.
+
+### Working with an agent harness (Deep Agents example)
+
+[`deepagents`](https://github.com/langchain-ai/deepagents) is a ready-made harness built on LangGraph. It already includes planning, a virtual filesystem, subagents, and summarization, so you only add your model, prompt, and tools:
+
+```python
+from deepagents import create_deep_agent
+
+def get_sum(a: int, b: int) -> int:
+    """Return the sum of two numbers."""
+    return a + b
+
+agent = create_deep_agent(
+    model=model,                              # any LangChain chat model
+    system_prompt="You are a helpful math assistant.",
+    tools=[get_sum],                          # your custom tools
+    # subagents=[...], middleware=[...], interrupt_on={...}  # optional
+)
+
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "What is the sum of 5 and 9?"}]}
+)
+print(result["messages"][-1].content)
+```
+
+**Tips for working with agents**
+* **Write a clear system prompt.** Spell out the goal, the rules, and what output you expect.
+* **Keep tools small and well documented.** The model picks tools based on their names, docstrings, and type hints.
+* **Give the agent only the tools it needs.** Too many tools make it worse at choosing.
+* **Use subagents for big or separate subtasks** so the main agent's context stays clean.
+* **Add HITL for irreversible actions** such as sending emails, writing to a database, or making payments.
+* **Watch and trace runs** (for example with LangSmith) to debug the agent's decisions.
+
+👉 Hands-on code: [`28-Intorduction-to-deep-and-Agents-Harness`](28-Intorduction-to-deep-and-Agents-Harness/)
 
 ---
 
@@ -105,6 +200,13 @@ The lab is structured progressively. Click to expand each module to see the unde
 * `20-e2e-Productions-grade-ATS`: End-to-end Applicant Tracking System backed by Alembic, SQLModel, and LangGraph.
 * `23-e2e-multi-agent-plan-research-write-blog`: A multi-agent writer architecture with a beautiful web frontend.
 * `24-SynapseAI-parsitence-chatbot`: A modern API-first chatbot backend via FastAPI with complex graph routing.
+</details>
+
+<details>
+<summary><b>8️⃣ Deep Agents & Agent Harness (Module 28)</b></summary>
+<br>
+
+* `28-Intorduction-to-deep-and-Agents-Harness`: What an agent harness is, Deep Agents architecture (execution environment, context management, delegation, steering), middleware, system prompts, prompt caching, and search/SQL agents built with `deepagents`.
 </details>
 
 ---
