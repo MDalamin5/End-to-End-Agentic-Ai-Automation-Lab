@@ -6,6 +6,7 @@ from pathlib import Path
 from deepagents import create_deep_agent
 from langchain_community.utilities import SQLDatabase
 from langchain_core.tools import tool
+from tavli3rdPartyTool import getHotWeather
 
 from model import model
 
@@ -35,7 +36,7 @@ def read_sql(query: str) -> str:
 agent = create_deep_agent(
     model=model,
     name="SQL_Agent",
-    tools=[read_sql],
+    tools=[read_sql, getHotWeather],
     system_prompt=SYSTEM_PROMPT,
 )
 
@@ -55,6 +56,13 @@ agent = create_deep_agent(
 
 result = agent.invoke(
     {"messages": [{"role": "user", "content": "Which five genres have the most tracks?"}]}
+)
+
+print(result["messages"][-1].text)
+
+# hot weather check
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "tell me the DHK weather today.?"}]}
 )
 
 print(result["messages"][-1].text)
