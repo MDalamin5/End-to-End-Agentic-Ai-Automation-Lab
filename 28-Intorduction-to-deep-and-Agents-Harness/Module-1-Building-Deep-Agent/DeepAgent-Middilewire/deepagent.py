@@ -9,3 +9,9 @@ agent = create_deep_agent(
     #tools=[read_sql, getHotWeather],
     system_prompt=SYSTEM_PROMPT,
 )
+
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "hi, how are you?"}]}
+)
+
+print(result["messages"][-1].text)

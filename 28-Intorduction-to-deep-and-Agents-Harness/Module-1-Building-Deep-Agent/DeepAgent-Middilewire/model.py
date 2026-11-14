@@ -3,7 +3,7 @@ load_dotenv()
 from langchain_deepseek import ChatDeepSeek
 
 import os
-os.environ["DeepSeek_API_KEY"] = os.getenv("DeepSeek_API_KEY")
+os.environ["DEEPSEEK_API_KEY"] = os.getenv("DEEPSEEK_API_KEY")
 
 model = ChatDeepSeek(
         model="deepseek-flash",
